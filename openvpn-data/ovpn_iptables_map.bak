@@ -1,0 +1,9 @@
+#!/bin/bash
+
+echo "phpmyadminapione 8081"
+iptables -t nat -A PREROUTING -d 192.168.255.1 -p tcp --dpot 8081 -j DNAT --to-dest 192.168.192.4:80
+iptables -t filte -A INPUT -p tcp -d 192.168.255.1 --dport 8081 -j ACCEPT
+
+echo "LARAVELAPI ONE 8080"
+iptables -t nat -A PREROUTING -d 192.168.255.1 -p tcp --dpot 8080 -j DNAT --to-dest 192.168.192.3:8080
+iptables -t filte -A INPUT -p tcp -d 192.168.255.1 --dport 8080 -j ACCEPT

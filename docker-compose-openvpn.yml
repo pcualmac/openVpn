@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  openvpn:
+    container_name: openvpn_server
+    image: kylemanna/openvpn
+    cap_add:
+     - NET_ADMIN
+    ports:
+     - "1194:1194/udp"
+    volumes:
+     - ${PROJECTDIRVPN}${CONTEINERS}/openVpn/openvpn-data:/etc/openvpn
+     - ${PROJECTDIRVPN}${CONTEINERS}/openVpn/bin:/usr/local/bin
+    dns:
+      - 1.1.1.1
+    networks:
+      openvpn:
+        ipv4_address: 192.168.192.2
